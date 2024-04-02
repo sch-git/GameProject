@@ -1,21 +1,26 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Enemy
 {
     // 抽象敌人类
     public abstract class Enemy: MonoBehaviour
     {
-        public GameObject bloodEffect;
+
+        [Header("基础属性")]
         public int health;
         public int damage;
+        public GameObject bloodEffect;
         public float flashTime = 0.1f;
         
         private Color _originalColor;
         private SpriteRenderer _spriteRenderer;
+        private PlayerHealth _playerHealth;
         protected void Start()
         {
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _originalColor = _spriteRenderer.color;
+            _playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
         }
 
         protected void Update()
@@ -40,6 +45,18 @@ namespace Enemy
         void ResetColor()
         {
             _spriteRenderer.color = _originalColor;
+        }
+        
+
+        void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.CompareTag("Player") && other.GetType().ToString() == "UnityEngine.CapsuleCollider2D")
+            {
+                if (_playerHealth!=null)
+                {
+                    _playerHealth.DamagePlayer(damage);
+                }
+            }
         }
     }
 }

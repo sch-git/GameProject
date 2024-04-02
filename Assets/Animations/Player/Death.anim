@@ -22,30 +22,30 @@ AnimationClip:
     curve:
     - time: 0
       value: {fileID: 1271979843, guid: e9a8161585dc40d4b86e6cea524423bc, type: 3}
-    - time: 0.083333336
+    - time: 0.11111111
       value: {fileID: 666072870, guid: e9a8161585dc40d4b86e6cea524423bc, type: 3}
-    - time: 0.16666667
+    - time: 0.22222222
       value: {fileID: 1813883745, guid: e9a8161585dc40d4b86e6cea524423bc, type: 3}
-    - time: 0.25
-      value: {fileID: 1552409252, guid: e9a8161585dc40d4b86e6cea524423bc, type: 3}
     - time: 0.33333334
+      value: {fileID: 1552409252, guid: e9a8161585dc40d4b86e6cea524423bc, type: 3}
+    - time: 0.44444445
       value: {fileID: -430586305, guid: e9a8161585dc40d4b86e6cea524423bc, type: 3}
-    - time: 0.41666666
+    - time: 0.5555556
       value: {fileID: -204465026, guid: e9a8161585dc40d4b86e6cea524423bc, type: 3}
-    - time: 0.5
-      value: {fileID: 1316514183, guid: e9a8161585dc40d4b86e6cea524423bc, type: 3}
-    - time: 0.5833333
-      value: {fileID: -1164935618, guid: e9a8161585dc40d4b86e6cea524423bc, type: 3}
     - time: 0.6666667
+      value: {fileID: 1316514183, guid: e9a8161585dc40d4b86e6cea524423bc, type: 3}
+    - time: 0.7777778
+      value: {fileID: -1164935618, guid: e9a8161585dc40d4b86e6cea524423bc, type: 3}
+    - time: 0.8888889
       value: {fileID: -182676685, guid: e9a8161585dc40d4b86e6cea524423bc, type: 3}
-    - time: 0.75
+    - time: 1
       value: {fileID: -200385562, guid: e9a8161585dc40d4b86e6cea524423bc, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
     flags: 2
-  m_SampleRate: 12
+  m_SampleRate: 9
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -77,12 +77,12 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.8333333
+    m_StopTime: 1.1111112
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
     m_HasAdditiveReferencePose: 0
-    m_LoopTime: 1
+    m_LoopTime: 0
     m_LoopBlend: 0
     m_LoopBlendOrientation: 0
     m_LoopBlendPositionY: 0
@@ -96,4 +96,11 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 1
+    functionName: DestroyObj
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
