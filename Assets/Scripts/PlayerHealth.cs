@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -8,6 +9,11 @@ public class PlayerHealth : MonoBehaviour
     public int health = 10;
     public int number;
     public float blinkTime;
+    [Header("Health UI")] 
+    public GameObject healthImageObj;
+
+    private Image _healthImageComponent;
+    private int _maxHealth;
 
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
@@ -16,6 +22,8 @@ public class PlayerHealth : MonoBehaviour
     {
         _spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         _animator = gameObject.GetComponent<Animator>();
+        _healthImageComponent = healthImageObj.GetComponent<Image>();
+        _maxHealth = health;
     }
 
     // Update is called once per frame
@@ -34,6 +42,8 @@ public class PlayerHealth : MonoBehaviour
         {
             BlinkPlayer(number, blinkTime);
         }
+        // ui 血条展示逻辑
+        _healthImageComponent.fillAmount = health / (float)_maxHealth;
     }
 
     public void DestroyObj()
