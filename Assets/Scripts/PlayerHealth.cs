@@ -32,6 +32,7 @@ public class PlayerHealth : MonoBehaviour
         
     }
 
+    // 玩家受伤
     public void DamagePlayer(int damage)
     {
         health -= damage;

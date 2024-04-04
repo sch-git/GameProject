@@ -88,6 +88,7 @@ public class PlayerController : MonoBehaviour
         isGround = _boxCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground"));
     }
 
+    // 攻击
     void Attack()
     {
         if (Input.GetButtonDown("Attack"))
