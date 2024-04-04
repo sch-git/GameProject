@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     public float jumpSpeed = 1f;
     public float doubleJumpSpeed = 1f;
 
+    public PlatformController platformController;
+
     private bool _canDoubleJump = false;
     
     private Rigidbody2D _rigidbody2D;
@@ -17,6 +19,7 @@ public class PlayerController : MonoBehaviour
     private BoxCollider2D _boxCollider2D;
 
     private bool isGround;
+    
     void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
@@ -38,12 +41,24 @@ public class PlayerController : MonoBehaviour
     // 移动
     void Run()
     {
-        var moveDirection = Input.GetAxisRaw("Horizontal");
+        var moveDirectionHorizontal = Input.GetAxisRaw("Horizontal");
+        var moveDirectionVertical = Input.GetAxisRaw("Vertical");
         var velocity = _rigidbody2D.velocity;
         
         // X轴移动
-        velocity = new Vector2(moveDirection * moveSpeed, velocity.y);
+        velocity = new Vector2(moveDirectionHorizontal * moveSpeed, velocity.y);
         _rigidbody2D.velocity = velocity;
+        // Y轴移动
+        
+        print("moveDirectionVertical"+moveDirectionVertical);
+        if (moveDirectionVertical < 0 && isGround && platformController.CanDown())
+        {
+            var platformCollider = platformController.gameObject.GetComponent<CompositeCollider2D>();
+            if (platformCollider != null)
+            {
+                platformCollider.isTrigger = true;
+            }
+        }
     }
 
     // 移动反转
@@ -88,6 +103,7 @@ public class PlayerController : MonoBehaviour
         isGround = _boxCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground"));
     }
 
+    // 攻击
     void Attack()
     {
         if (Input.GetButtonDown("Attack"))
