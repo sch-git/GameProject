@@ -50,7 +50,6 @@ public class PlayerController : MonoBehaviour
         _rigidbody2D.velocity = velocity;
         // Y轴移动
         
-        print("moveDirectionVertical"+moveDirectionVertical);
         if (moveDirectionVertical < 0 && isGround && platformController.CanDown())
         {
             var platformCollider = platformController.gameObject.GetComponent<CompositeCollider2D>();
