@@ -49,7 +49,13 @@ public class PlayerHealth : MonoBehaviour
 
     public void DestroyObj()
     {
+        print("DestroyObj");
         Destroy(gameObject);
+    }
+
+    public void TestAnimation()
+    {
+        print("TestAnimation");
     }
 
     void BlinkPlayer(int number, float time)
