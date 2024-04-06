@@ -8,10 +8,12 @@ public class PlatformController : MonoBehaviour
     private bool _canDown;
 
     private CompositeCollider2D _compositeCollider2D;
+    private BoxCollider2D _boxCollider2D;
 
     private void Start()
     {
         _compositeCollider2D = GetComponent<CompositeCollider2D>();
+        _boxCollider2D = GetComponent<BoxCollider2D>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -38,6 +40,23 @@ public class PlatformController : MonoBehaviour
 
     void ResetIsTrigger()
     {
-        _compositeCollider2D.isTrigger = false;
+        SetTriggerTure(false);
+    }
+
+    public void SetTriggerTure()
+    {
+        SetTriggerTure(true);
+    }
+    void SetTriggerTure(bool isTrigger)
+    {
+        if (_compositeCollider2D != null)
+        {
+            _compositeCollider2D.isTrigger = isTrigger;
+        }
+
+        if (_boxCollider2D != null)
+        {
+            _boxCollider2D.isTrigger = isTrigger;
+        }
     }
 }

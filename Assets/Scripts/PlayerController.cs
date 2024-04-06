@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     public float jumpSpeed = 1f;
     public float doubleJumpSpeed = 1f;
 
-    public PlatformController platformController;
+    private PlatformController _platformController;
 
     private bool _canDoubleJump = false;
     
@@ -50,14 +50,20 @@ public class PlayerController : MonoBehaviour
         _rigidbody2D.velocity = velocity;
         // Y轴移动
         
-        if (moveDirectionVertical < 0 && isGround && platformController.CanDown())
+        if (moveDirectionVertical < 0 && isGround && _platformController!=null && _platformController.CanDown())
         {
-            var platformCollider = platformController.gameObject.GetComponent<CompositeCollider2D>();
-            if (platformCollider != null)
-            {
-                platformCollider.isTrigger = true;
-            }
+            _platformController.SetTriggerTure();
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        other.TryGetComponent<PlatformController>(out _platformController);
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        _platformController = null;
     }
 
     // 移动反转

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7633515476934608944}
   - component: {fileID: 4501863989155168250}
   - component: {fileID: 8198788323893246357}
+  - component: {fileID: 2998433690537497339}
   m_Layer: 7
   m_Name: MovingPlatform
   m_TagString: Untagged
@@ -119,7 +120,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 1
   m_UsedByComposite: 0
-  m_Offset: {x: -0.001576066, y: 0.0026261806}
+  m_Offset: {x: -0.005461216, y: 0.0026261806}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -130,7 +131,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.9590266, y: 0.3447013}
+  m_Size: {x: 2.1439838, y: 0.3447013}
   m_EdgeRadius: 0
 --- !u!114 &4501863989155168250
 MonoBehaviour:
@@ -165,6 +166,19 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
+--- !u!114 &2998433690537497339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6703228917243029758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80cf820e6d04c154284e0557e15e5092, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
 --- !u!1 &8110309740947885703
 GameObject:
   m_ObjectHideFlags: 0
