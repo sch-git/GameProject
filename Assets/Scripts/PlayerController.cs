@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     public float doubleJumpSpeed = 1f;
 
     private PlatformController _platformController;
+    private LadderController _ladderController;
+    
 
     private bool _canDoubleJump = false;
     
@@ -19,6 +21,7 @@ public class PlayerController : MonoBehaviour
     private BoxCollider2D _boxCollider2D;
 
     private bool isGround;
+    private bool isClimb;
     
     void Start()
     {
@@ -47,23 +50,46 @@ public class PlayerController : MonoBehaviour
         
         // X轴移动
         velocity = new Vector2(moveDirectionHorizontal * moveSpeed, velocity.y);
-        _rigidbody2D.velocity = velocity;
         // Y轴移动
-        
         if (moveDirectionVertical < 0 && isGround && _platformController!=null && _platformController.CanDown())
         {
             _platformController.SetTriggerTure();
         }
+
+        // 爬楼梯
+        if (Mathf.Abs(moveDirectionVertical) > Mathf.Epsilon && _ladderController != null &&
+            _ladderController.CanCLimb())
+        {
+            isClimb = true;
+            velocity = new Vector2(velocity.x, moveDirectionVertical * moveSpeed);
+        }
+        _rigidbody2D.velocity = velocity;
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        other.TryGetComponent<PlatformController>(out _platformController);
+        if (other.GetComponent<PlatformController>()!=null)
+        {
+            _platformController = other.GetComponent<PlatformController>();
+        }
+        if (other.GetComponent<LadderController>()!=null)
+        {
+            _ladderController = other.GetComponent<LadderController>();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        _platformController = null;
+        if (other.GetComponent<PlatformController>() != null)
+        {
+            _platformController = null;
+        }
+        if (other.GetComponent<LadderController>() != null)
+        {
+            _ladderController = null;
+            isClimb = false;
+        }
     }
 
     // 移动反转
@@ -73,12 +99,12 @@ public class PlayerController : MonoBehaviour
         if (hasAxisSpeed)
         {
             var sr = GetComponent<SpriteRenderer>();
-            if (_rigidbody2D.velocity.x > 0)
+            if (_rigidbody2D.velocity.x > Mathf.Epsilon)
             {
                 sr.flipX = false;
             }
 
-            if (_rigidbody2D.velocity.x < 0)
+            if (_rigidbody2D.velocity.x < Mathf.Epsilon)
             {
                 sr.flipX = true;
             }
@@ -124,13 +150,22 @@ public class PlayerController : MonoBehaviour
         {
             _animator.SetFloat("JumpY",0);
         }
-        if (_rigidbody2D.velocity.y > 0)
+        if (_rigidbody2D.velocity.y > 0.01f)
         {
             _animator.SetFloat("JumpY",1f);
         }
-        if (!isGround && _rigidbody2D.velocity.y < 0)
+        if (!isGround && _rigidbody2D.velocity.y < 0.01f)
         {
             _animator.SetFloat("JumpY",-1f);
+        }
+
+        if (Mathf.Abs(_rigidbody2D.velocity.y) > 0.01f && isClimb)
+        {
+            _animator.SetBool("climb",true);
+        }
+        else if(_animator.GetBool("climb"))
+        {
+            _animator.SetBool("climb",false);
         }
         
         // 判断X轴是否有速度
