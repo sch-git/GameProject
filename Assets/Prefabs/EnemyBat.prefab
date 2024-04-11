@@ -167,7 +167,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2060515359
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 363883289, guid: 73a44092f1c5a924a969bf42218e9c00, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -240,6 +240,7 @@ MonoBehaviour:
   health: 5
   damage: 1
   bloodEffect: {fileID: 6689095368102154113, guid: 3e885124f127b5c4abc4c5a2f465e5db, type: 3}
+  dropCoin: {fileID: 6755979372927940978, guid: bc605842c2c6034499b434761053db2b, type: 3}
   flashTime: 0.1
   startWaitTime: 0.5
   speed: 2

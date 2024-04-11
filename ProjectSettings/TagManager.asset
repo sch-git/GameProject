@@ -17,7 +17,7 @@ TagManager:
   - Enemy
   - BackGround
   - Spika
-  - 
+  - Item
   - 
   - 
   - 
@@ -47,6 +47,9 @@ TagManager:
     locked: 0
   - name: Ground
     uniqueID: 2991015435
+    locked: 0
+  - name: Item
+    uniqueID: 3986390807
     locked: 0
   - name: Enemy
     uniqueID: 2234451937

@@ -11,6 +11,7 @@ namespace Enemy
         public int health;
         public int damage;
         public GameObject bloodEffect;
+        public GameObject dropCoin;
         public float flashTime = 0.1f;
         
         private Color _originalColor;
@@ -27,6 +28,7 @@ namespace Enemy
         {
             if (health <= 0)
             {
+                Instantiate(dropCoin, transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }
         }

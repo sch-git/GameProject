@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -12,7 +13,15 @@ public class PlayerAttack : MonoBehaviour
 
     void Update()
     {
-        
+        var spriteRenderer = transform.parent.GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null && spriteRenderer.flipX)
+        {
+            transform.eulerAngles = new Vector3(0, 180, 0);
+        }
+        else
+        {
+            transform.eulerAngles = new Vector3(0, 0, 0);
+        }
     }
 
     // 碰撞检测

@@ -9,7 +9,7 @@ namespace Enemy
         public Transform moveTarget,leftDown, rightUp;
 
         private float _waitTime;
-
+        
         new void Start()
         {
             base.Start();

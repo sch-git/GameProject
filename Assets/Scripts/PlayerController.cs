@@ -99,12 +99,12 @@ public class PlayerController : MonoBehaviour
         if (hasAxisSpeed)
         {
             var sr = GetComponent<SpriteRenderer>();
-            if (_rigidbody2D.velocity.x > Mathf.Epsilon)
+            if (_rigidbody2D.velocity.x > 0.01f)
             {
                 sr.flipX = false;
             }
-
-            if (_rigidbody2D.velocity.x < Mathf.Epsilon)
+            
+            if (_rigidbody2D.velocity.x < -0.01f)
             {
                 sr.flipX = true;
             }
