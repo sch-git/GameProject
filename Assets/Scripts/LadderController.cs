@@ -30,7 +30,7 @@ public class LadderController : MonoBehaviour
         if (player.TryGetComponent(out Rigidbody2D _rigidBody2d))
         {
             _rigidBody2d.gravityScale = 0;
-            _rigidBody2d.velocity = new Vector2(_rigidBody2d.velocity.x, 0);
+            // _rigidBody2d.velocity = new Vector2(_rigidBody2d.velocity.x, 0);
         }
     }
 

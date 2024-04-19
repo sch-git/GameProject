@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
     void Run()
     {
         var moveDirectionHorizontal = Input.GetAxisRaw("Horizontal");
-        var moveDirectionVertical = Input.GetAxisRaw("Vertical");
+        var moveDirectionVertical = Input.GetAxisRaw("Vertical2");
         var velocity = _rigidbody2D.velocity;
         
         // X轴移动
@@ -56,12 +56,18 @@ public class PlayerController : MonoBehaviour
             _platformController.SetTriggerTure();
         }
 
+        print("moveDirectionVertical:"+moveDirectionVertical);
+        print("moveDirectionHorizontal:"+moveDirectionHorizontal);
+        print("Input.GetKeyDown(KeyCode.S);:"+Input.GetKeyDown(KeyCode.S));
+        print("Input.GetKeyDown(KeyCode.W);:"+Input.GetKeyDown(KeyCode.W));
         // 爬楼梯
-        if (Mathf.Abs(moveDirectionVertical) > Mathf.Epsilon && _ladderController != null &&
-            _ladderController.CanCLimb())
+        if (_ladderController != null && _ladderController.CanCLimb())
         {
             isClimb = true;
-            velocity = new Vector2(velocity.x, moveDirectionVertical * moveSpeed);
+            if (Mathf.Abs(moveDirectionVertical) > 0.1f)
+            {
+                velocity = new Vector2(velocity.x, moveDirectionVertical * moveSpeed);
+            }
         }
         _rigidbody2D.velocity = velocity;
 
